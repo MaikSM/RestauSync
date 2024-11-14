@@ -11,12 +11,6 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 
 - **C++**: Lenguaje de programación principal utilizado para desarrollar la lógica de la aplicación.
 - **PHP**: Lenguaje utilizado para el diseño de la página.
-- **Docker**: Herramienta para crear contenedores que aseguran que la aplicación funcione de manera consistente en
-  diferentes entornos.
-- **Docker Compose**: Utilizado para definir y ejecutar aplicaciones Docker de múltiples contenedores, facilitando la
-  gestión de servicios relacionados.
-- **OpenSSL**: Biblioteca utilizada para implementar funciones de criptografía y seguridad en la aplicación.
-- **Cmake**: Extensión utilizada para empaquetar el proyecto.
 - **Xampp**: Gestior de bases de datos de código abierto.
 
 
