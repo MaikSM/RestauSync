@@ -1,5 +1,6 @@
 ## 🚀 RestauSync
-![alt text](fondo.png)
+![alt text](fondo.png) 
+
 
 ## 📜 Descripción
 Repositorio para un proyecto sobre un aplicativo para Restaurantes
