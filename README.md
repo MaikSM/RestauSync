@@ -30,7 +30,10 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 └── data
 └── main.cpp
    ```
-**📊 Mapa de Navegación**
+**🖥 Página Web:** 
+https://drive.google.com/drive/folders/1sXHN52Wap0UovdsT4diPcBXqt-dIDT79?usp=sharing
+
+**📊 Mapa de Navegación:**
 https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing
 
 **📃 Documento:**
