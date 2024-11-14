@@ -13,8 +13,7 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 - **PHP**: Lenguaje utilizado para el diseño de la página.
 - **Xampp**: Gestior de bases de datos de código abierto.
 
-##📊 Mapa de Navegación 
-https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing
+
 
 ## 📁 Estructura del Proyecto
 
@@ -31,8 +30,11 @@ https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=shari
 └── data
 └── main.cpp
    ```
-**📃 Documento:**
+**📊 Mapa de Navegación**
+https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing
 
+**📃 Documento:**
+https://docs.google.com/document/d/1AQlyxyKjP9I5q9K-Qb4GYvXsqw_4wfbb/edit?usp=drive_link&ouid=116668543162587748605&rtpof=true&sd=true
 
 
 **📊 Presentación:**
