@@ -34,7 +34,7 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 
 
 **📊 Presentación:**
-https://www.canva.com/design/DAGWdnYaej4/vKm4AowoVvDkGK8Lz2vWMQ/edit?utm_content=DAGWdnYaej4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+[https://www.canva.com/design/DAGWdnYaej4/vKm4AowoVvDkGK8Lz2vWMQ/edit?utm_content=DAGWdnYaej4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGWdlvLmhk/Ja-pEjfaoU5l3c0tHvcEGQ/edit?utm_content=DAGWdlvLmhk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
 **🚀 Instalación:**
