@@ -44,7 +44,9 @@ https://docs.google.com/document/d/1AQlyxyKjP9I5q9K-Qb4GYvXsqw_4wfbb/edit?usp=dr
 [https://www.canva.com/design/DAGWdnYaej4/vKm4AowoVvDkGK8Lz2vWMQ/edit?utm_content=DAGWdnYaej4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGWdlvLmhk/Ja-pEjfaoU5l3c0tHvcEGQ/edit?utm_content=DAGWdlvLmhk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
-**🚀 Instalación:**
+**🚀 Mockup:**
+https://drive.google.com/file/d/1RRVvbDGRa0bgOkOfDM5DY045C1C7dRuq/view?usp=sharing
+
 
 
 
