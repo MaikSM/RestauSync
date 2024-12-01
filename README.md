@@ -38,6 +38,7 @@ https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=shari
 
 **📃 Documento:**
 https://docs.google.com/document/d/1AQlyxyKjP9I5q9K-Qb4GYvXsqw_4wfbb/edit?usp=drive_link&ouid=116668543162587748605&rtpof=true&sd=true
+https://docs.google.com/document/d/1HY3EwO6OWP1bRDK5zK5y8vqchX1NsH_PhPlUEvPfrhI/edit?usp=sharing
 
 
 **📊 Presentación:**
