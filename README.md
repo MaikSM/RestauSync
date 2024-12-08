@@ -31,16 +31,16 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 └── main.cpp
    ```
 **🖥 Página Web:** 
-https://drive.google.com/drive/folders/1sXHN52Wap0UovdsT4diPcBXqt-dIDT79?usp=sharing
+[Link](https://drive.google.com/drive/folders/1sXHN52Wap0UovdsT4diPcBXqt-dIDT79?usp=sharing)
 
 **📊 Mapa de Navegación:**
-https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing
+[Link](https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing)
 
 **📃 Documento:**
-.[link](https://docs.google.com/document/d/15r4De55eXJv-mmLM6LAxWpgDSMNhAgRu/edit?usp=drivesdk&ouid=108198849053322034172&rtpof=true&sd=true)
+[link](https://docs.google.com/document/d/15r4De55eXJv-mmLM6LAxWpgDSMNhAgRu/edit?usp=drivesdk&ouid=108198849053322034172&rtpof=true&sd=true)
 
 **📊 Presentación:**
-[https://www.canva.com/design/DAGWdnYaej4/vKm4AowoVvDkGK8Lz2vWMQ/edit?utm_content=DAGWdnYaej4&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton](https://www.canva.com/design/DAGWdlvLmhk/Ja-pEjfaoU5l3c0tHvcEGQ/edit?utm_content=DAGWdlvLmhk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+[Link](https://www.canva.com/design/DAGWdlvLmhk/Ja-pEjfaoU5l3c0tHvcEGQ/edit?utm_content=DAGWdlvLmhk&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
 
 
 **🚀 Mockup:**
@@ -62,7 +62,7 @@ JAIDER SEBASTIAN MORENO QUINTERO <jaider_smoreno@soy.sena.edu.co>
 
 JUAN SEBASTIAN MARTINEZ PINTO <sebaspinto96@gmail.com>
 
-MICHACEL STEVEN SALAMANCA MARTIN <salamancamai12@gmail.com>
+MICHAEL STEVEN SALAMANCA MARTIN <salamancamai12@gmail.com>
 
 NICOLAS MARTINEZ VALENZUELA <nicomav1101023@gmail.com>
 
