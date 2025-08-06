@@ -11,7 +11,7 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 
 - **Larabel**: Framework Backend.
 - **Angular**: Framework Frontend.
-- **Xampp**: Gestior de bases de datos de código abierto.
+- **Xampp**: Gestor de bases de datos de código abierto.
 - **HTML**: Lenguaje de etiquetado para la representación de la página.
 
 
