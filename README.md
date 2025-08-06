@@ -9,9 +9,10 @@ Repositorio para un proyecto sobre un aplicativo para Restaurantes
 
 ## 🛠️ Tecnologías
 
-- **C++**: Lenguaje de programación principal utilizado para desarrollar la lógica de la aplicación.
-- **PHP**: Lenguaje utilizado para el diseño de la página.
+- **Larabel**: Framework Backend.
+- **Angular**: Framework Frontend.
 - **Xampp**: Gestior de bases de datos de código abierto.
+- **HTML**: Lenguaje de etiquetado para la representación de la página.
 
 
 
