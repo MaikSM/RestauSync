@@ -143,3 +143,4 @@ export class AuthLoginPageComponent {
 
 }
 export default AuthLoginPageComponent;
+//component de login
