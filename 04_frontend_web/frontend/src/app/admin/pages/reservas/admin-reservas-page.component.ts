@@ -458,7 +458,7 @@ export class AdminReservasPageComponent implements OnInit {
       return;
     }
 
-    // Verificar si la mesa tiene reservas activas
+    // Verificar si la mesa tiene reserva activa
     const hasActiveReservations = this.reservas.some(
       (r) =>
         r.mesa_id === mesaId &&
