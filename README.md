@@ -123,6 +123,10 @@ app/
 **📊 Presentación trimestre 5:**
 [Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=sharing&ouid=116668543162587748605&rtpof=true&sd=true)
 
+**📊 Presentación trimestre 6:**
+[Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=sharing&ouid=116668543162587748605&rtpof=true&sd=true)
+
+
 
 **🚀 Mockup:**
 https://drive.google.com/file/d/1RRVvbDGRa0bgOkOfDM5DY045C1C7dRuq/view?usp=sharing
@@ -162,10 +166,10 @@ Para ejecutar la página web que utiliza HTML, MySQL y Flask:
     python scripts/init_db.py
     ```
 
-5. **Ejecuta la aplicación Flask**:
+5. **Ejecuta las aplicaciones backend y frontend**:
 
     ```bash
-    flask run
+    npm start
     ```
 
 6. **Abre la aplicación en tu navegador**:
