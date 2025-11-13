@@ -1,202 +1,130 @@
 ## 🚀 RestauSync
 ![alt text](fondo.png) 
 
+# RestauSync
 
-## 📜 Descripción
-Repositorio para un proyecto sobre un aplicativo para Restaurantes
+## Descripción
 
-"Bienvenido a RestauSync, donde la tradición y la innovación se unen en un viaje gastronómico único. Disfruta de nuestra especialidad, la Arepa RestauSync de la Casa, y explora nuestra variedad de platos colombianos incluyendo la famosa Bandeja Paisa. ¡Ven y descubre el sabor de la autenticidad en un ambiente acogedor y elegante!"
+RestauSync es un sistema integral de gestión para restaurantes que permite administrar usuarios, inventario, pedidos, menús, mesas y más. El proyecto se desarrolló de manera incremental a lo largo de varios trimestres, comenzando con la planificación y prototipos, hasta llegar a una aplicación web completa construida con Flask.
 
-## 🛠️ Tecnologías
+El sistema soporta múltiples roles de usuario: administradores, chefs, meseros, clientes, y gestiona operaciones clave como la toma de pedidos, control de inventario, gestión de menús y reportes.
 
-- **Larabel**: Framework Backend.
-- **Angular**: Framework Frontend.
-- **Xampp**: Gestor de bases de datos de código abierto.
-- **HTML**: Lenguaje de etiquetado para la representación de la página.
+## Estructura del Proyecto
 
+El repositorio está organizado por fases de desarrollo y componentes principales:
 
-
-## 📁 Estructura del Proyecto
-
- ```text
-app/
+```
+RestauSync-main/
 │
-├── __init__.py
-├── config.py
+├── 01_proyecto/                          # Documentación y desarrollo del proyecto
+│   ├── trimestre_2/                      # Segundo trimestre: Planificación y requerimientos
+│   │   ├── 01_planteamiento_general/     # Planteamiento general del proyecto
+│   │   ├── 02_mapa_de_procesos/          # Mapas de procesos (BPMN, PDF)
+│   │   ├── 03_recoleccion_informacion/   # Recolección de información (entrevistas)
+│   │   ├── 04_requerimientos/            # Requerimientos funcionales
+│   │   ├── 05_casos_de_uso/              # Casos de uso
+│   │   ├── 06_mockup/                    # Mockups del sistema
+│   │   └── 07_ficha_tecnica/             # Ficha técnica y cotización
+│   │
+│   ├── trimestre_3/                      # Tercer trimestre: Diseño y prototipos
+│   │   ├── 1_modelo_relacional/          # Modelo relacional de la base de datos
+│   │   ├── 2_normalización/              # Normalización de la BD
+│   │   ├── 3_diccionario_de_datos/       # Diccionario de datos
+│   │   ├── 4_diagrama_de_clases/         # Diagramas de clases
+│   │   ├── 5_diagrama_de_distribución/   # Diagramas de distribución
+│   │   └── 6_prototipo_navegable/        # Prototipo navegable (HTML/CSS/JS)
+│   │       ├── Gestión_Usuarios/         # Gestión de usuarios
+│   │       ├── Inicio/                   # Página principal
+│   │       ├── Inventario/               # Gestión de inventario
+│   │       ├── Login_Register/           # Autenticación
+│   │       ├── Pedidos/                  # Gestión de pedidos
+│   │       ├── Reserva/                  # Reservas
+│   │       └── usuarios/                 # Interfaces por rol (admin, cliente, cocinero)
+│   │
+│   ├── trimestre_4/                      # Cuarto trimestre: Implementación final
+│   │   ├── Base de datos/                # Scripts SQL (consultas, datos, procedimientos)
+│   │   ├── Diagrama de clases/           # Diagramas de clases finales
+│   │   ├── Proyecto/                     # Aplicación Flask principal
+│   │   │   ├── app/                      # Código de la aplicación
+│   │   │   │   ├── controllers/          # Controladores (auth, admin, chef, etc.)
+│   │   │   │   ├── models/               # Modelos de datos
+│   │   │   │   ├── templates/            # Plantillas HTML
+│   │   │   │   └── static/               # Archivos estáticos (CSS, JS, imágenes)
+│   │   │   ├── config.py                 # Configuración
+│   │   │   ├── run.py                    # Script de ejecución
+│   │   │   ├── requirements.txt          # Dependencias Python
+│   │   │   └── readme.md                 # Estructura de la app Flask
+│   │   ├── Trabajo/                      # Versiones adicionales del proyecto
+│   │   └── Vistas/                       # Vistas y prototipos adicionales
+│   │
+│   └── trimestre_5/                      # Quinto trimestre (en desarrollo)
 │
-├── models/
-│   ├── __init__.py
-│   ├── user.py
-│   ├── categoria.py
-│   ├── ingrediente.py
-│   ├── platillo.py
-│   ├── mesa.py
-│   ├── cliente.py
-│   ├── pedido.py
-│   ├── detalle_pedido.py
-│   └── inventario.py
+├── 02_base_datos/                        # Scripts de base de datos adicionales
+│   ├── consultas.sql
+│   ├── datos.sql
+│   ├── funciones.sql
+│   ├── procedures.sql
+│   └── restausync (5).sql
 │
-├── controllers/
-│   ├── __init__.py
-│   ├── auth_controller.py
-│   ├── admin_controller.py
-│   ├── chef_controller.py
-│   ├── mesero_controller.py
-│   ├── inventario_controller.py
-│   ├── menu_controller.py
-│   ├── pedidos_controller.py
-│   └── mesas_controller.py
-│
-├── templates/
-│   ├── base.html
-│   │
-│   ├── auth/
-│   │   ├── login.html
-│   │   └── register.html
-│   │
-│   ├── admin/
-│   │   ├── dashboard.html
-│   │   ├── usuarios/
-│   │   │   ├── list.html
-│   │   │   └── form.html
-│   │   └── reportes/
-│   │       └── ventas.html
-│   │
-│   ├── chef/
-│   │   ├── dashboard.html
-│   │   ├── ordenes.html
-│   │   └── recetas/
-│   │       ├── list.html
-│   │       └── form.html
-│   │
-│   ├── mesero/
-│   │   ├── dashboard.html
-│   │   ├── mesas/
-│   │   │   ├── list.html
-│   │   │   └── detalles.html
-│   │   └── pedidos/
-│   │       ├── nuevo.html
-│   │       └── list.html
-│   │
-│   ├── inventario/
-│   │   ├── dashboard.html
-│   │   ├── ingredientes/
-│   │   │   ├── list.html
-│   │   │   └── form.html
-│   │   └── movimientos.html
-│   │
-│   └── shared/
-│       ├── menu.html
-│       └── platillos/
-│           ├── card.html
-│           └── detalles.html
-│
-└── static/
-    ├── css/
-    │   └── styles.css
-    ├── js/
-    │   └── scripts.js
-    └── img/
-        └── logo.png
+├── 03_backend/                           # Backend (en desarrollo)
+├── 04_frontend_web/                      # Frontend web (en desarrollo)
+└── 05_frontend_movil/                    # Frontend móvil (en desarrollo)
+```
+
+## Tecnologías Utilizadas
+
+- **Backend:** Python, Flask
+- **Base de Datos:** MySQL
+- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap
+- **Herramientas:** Git, GitHub
+- **Diagramas:** MySQL Workbench, Visual Paradigm
+
+## Instalación y Ejecución
+
+### Prerrequisitos
+- Python 3.8+
+- MySQL
+- pip
+
+### Pasos de Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/tu-usuario/RestauSync.git
+   cd RestauSync-main
    ```
-**🖥 Página Web:** 
-[Link](https://drive.google.com/drive/folders/1sXHN52Wap0UovdsT4diPcBXqt-dIDT79?usp=sharing)
 
-**📊 Mapa de Navegación del sistema:**
-[Link](https://drive.google.com/file/d/1xrKbX342PzqKwv00y0xOOYbQdXqd4mg5/view?usp=sharing)
+2. Instala las dependencias de la aplicación principal:
+   ```bash
+   cd 01_proyecto/trimestre_4/Proyecto
+   pip install -r requirements.txt
+   ```
 
-**📃 Documento:**
-[link](https://docs.google.com/document/d/15r4De55eXJv-mmLM6LAxWpgDSMNhAgRu/edit?usp=drivesdk&ouid=108198849053322034172&rtpof=true&sd=true)
+3. Configura la base de datos:
+   - Crea una base de datos MySQL llamada `restausync`
+   - Ejecuta los scripts SQL en `01_proyecto/trimestre_4/Base de datos/` o `02_base_datos/`
 
-**📃 Diseño UX/UI:**
-[link](https://docs.google.com/document/d/1uYjzObtSr7cGoRIv3svmb5KaIqbRuRQ-yJIf0PurmhI/edit?usp=sharing)
+4. Configura las variables de entorno:
+   - Copia `.env.example` a `.env` y ajusta las configuraciones
 
-**📊 Presentación trimestre 2:**
-[Link](https://docs.google.com/presentation/d/1oB6k4QIMxJEdAeV6bUasqtCnlSp9KzXe/edit?usp=sharing&ouid=104681654974810316499&rtpof=true&sd=true)
+5. Ejecuta la aplicación:
+   ```bash
+   python run.py
+   ```
 
-**📊 Presentación trimestre 3:**
-[Link](https://docs.google.com/presentation/d/1YPNXa6ZauhpDQq5R15n4pxE0JnbpGSFp/edit?usp=sharing&ouid=104681654974810316499&rtpof=true&sd=true)
+La aplicación estará disponible en `http://localhost:5000`
 
-**📊 Presentación trimestre 4:**
-[Link](https://docs.google.com/presentation/d/1nVMbFrQCrTj2hJvOb4ORm9j0vUUVpJdD/edit?slide=id.p1#slide=id.p1)
+## Contribuidores
 
-**📊 Presentación trimestre 5:**
-[Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=sharing&ouid=116668543162587748605&rtpof=true&sd=true)
+- [Lista de contribuidores del proyecto]
 
-**📊 Presentación trimestre 6:**
-[Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=sharing&ouid=116668543162587748605&rtpof=true&sd=true)
+## Licencia
 
+Este proyecto es de uso educativo y está disponible bajo la licencia MIT.
 
+## Notas Adicionales
 
-**🚀 Mockup:**
-https://drive.google.com/file/d/1RRVvbDGRa0bgOkOfDM5DY045C1C7dRuq/view?usp=sharing
-
-
-
-
-## Compilar el Código
-
-Para ejecutar la página web que utiliza HTML, MySQL y Flask:
-
-1. **Clona el repositorio** :
-
-    ```bash
-    git clone <URL_DEL_REPOSITORIO>
-    cd <NOMBRE_DEL_PROYECTO>
-    ```
-
-2. **Instala las dependencias de Python** tener `pip` y un entorno virtual:
-
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-    ```
-
-3. **Configura la base de datos MySQL**:
-
-    - Asegúrate de tener MySQL instalado y en ejecución.
-    - Crea una base de datos y un usuario para la aplicación.
-    - Actualiza las credenciales de conexión en el archivo de configuración (`config.py` o `.env`).
-
-4. **Inicializa la base de datos** (si es necesario):
-
-    ```bash
-    # Ejecuta el script de migración o inicialización según la estructura del proyecto
-    python scripts/init_db.py
-    ```
-
-5. **Ejecuta las aplicaciones backend y frontend**:
-
-    ```bash
-    npm start
-    ```
-
-6. **Abre la aplicación en tu navegador**:
-
-    Normalmente estará disponible en [http://localhost:5000](http://localhost:5000).
-
-> **Nota:** Si usas XAMPP para gestionar MySQL, asegúrate de que el servicio de MySQL esté iniciado antes de correr la aplicación.
-
-
-
-## 🖥️ Ejecutar la Aplicación
-
-## 👥 Participantes
-
-
-JAIDER SEBASTIAN MORENO QUINTERO <jaider_smoreno@soy.sena.edu.co>
-
-JUAN SEBASTIAN MARTINEZ PINTO <sebaspinto96@gmail.com>
-
-MICHAEL STEVEN SALAMANCA MARTIN <salamancamai12@gmail.com>
-
-NICOLAS MARTINEZ VALENZUELA <nicomav1101023@gmail.com>
-
-PAULA ANDREA CASSIANI CASTILLO <paulaacassiani@gmail.com>
-
-
-
-
-
-
+- El proyecto se desarrolló como parte de un curso académico, dividido en trimestres.
+- Los prototipos en `trimestre_3` son versiones navegables en HTML/CSS/JS puro.
+- La aplicación final en `trimestre_4/Proyecto` es una implementación completa con Flask.
+- Las carpetas `03_backend`, `04_frontend_web` y `05_frontend_movil` están reservadas para futuras expansiones.
