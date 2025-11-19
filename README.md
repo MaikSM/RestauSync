@@ -3,11 +3,20 @@
 
 # RestauSync
 
+**📊 Presentación trimestre 6:**
+[Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=drivesdk&ouid=116668543162587748605&rtpof=true&sd=true)
+
+
+
 ## Descripción
 
 RestauSync es un sistema integral de gestión para restaurantes que permite administrar usuarios, inventario, pedidos, menús, mesas y más. El proyecto se desarrolló de manera incremental a lo largo de varios trimestres, comenzando con la planificación y prototipos, hasta llegar a una aplicación web completa construida con Flask.
 
 El sistema soporta múltiples roles de usuario: administradores, chefs, meseros, clientes, y gestiona operaciones clave como la toma de pedidos, control de inventario, gestión de menús y reportes.
+
+## 🤖 Cronograma:**
+[Link](https://docs.google.com/spreadsheets/d/1sU9yqRqmKJTXwxIzJmFOpNZCl_4W1LZl/edit?usp=drive_link&ouid=108198849053322034172&rtpof=true&sd=true)
+
 
 ## Estructura del Proyecto
 
