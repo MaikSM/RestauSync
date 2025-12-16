@@ -1,5 +1,6 @@
 from datetime import timedelta
 
+# Helper functions for formatting and parsing
 def format_duration(seconds):
     """
     Convierte segundos a formato minutos:segundos (MM:SS)
