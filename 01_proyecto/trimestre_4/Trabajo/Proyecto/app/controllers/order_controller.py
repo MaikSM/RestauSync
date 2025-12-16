@@ -13,6 +13,7 @@ menu_service = MenuService()
 @login_required
 @role_required('mesero', 'administrador')
 def list_orders():
+    """List orders filtered by status."""
     status = request.args.get('status', 'all')
     orders = order_service.get_orders_by_status(status) if status != 'all' else order_service.get_all_orders()
     return render_template('orders/list.html', orders=orders, current_status=status)
