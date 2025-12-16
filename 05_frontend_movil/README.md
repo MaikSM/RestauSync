@@ -87,7 +87,7 @@ npx cap open android  # Abrir en Android Studio para firmar y generar APK
 
 - **Node.js** 18+
 - **Android Studio** con SDK 30+
-- **Java JDK** 11+
+- **Java JDK** 11+ (recomendado JDK 17)
 - **Capacitor CLI** instalado globalmente
 
 Esta aplicación móvil permite a los usuarios gestionar el restaurante desde cualquier dispositivo Android con una experiencia nativa fluida.
