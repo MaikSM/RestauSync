@@ -8,6 +8,7 @@ from app.utils.decorators import logout_required
 auth_bp = Blueprint('auth', __name__, url_prefix='/auth')
 service = AuthService()
 
+# Login route for user authentication
 @auth_bp.route('/login', methods=['GET', 'POST'])
 @logout_required
 def login():
