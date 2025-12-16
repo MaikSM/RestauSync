@@ -10,9 +10,9 @@
 
 ## Descripción
 
-RestauSync es un sistema integral de gestión para restaurantes que permite administrar usuarios, inventario, pedidos, menús, mesas y más. El proyecto se desarrolló de manera incremental a lo largo de varios trimestres, comenzando con la planificación y prototipos, hasta llegar a una aplicación web completa construida con Flask.
+RestauSync es un sistema integral de gestión para restaurantes que permite administrar usuarios, inventario, pedidos, menús, mesas y más. El proyecto se desarrolló de manera incremental a lo largo de varios trimestres, comenzando con la planificación y prototipos, hasta llegar a una aplicación completa con múltiples componentes: backend API, frontend web y aplicación móvil.
 
-El sistema soporta múltiples roles de usuario: administradores, chefs, meseros, clientes, y gestiona operaciones clave como la toma de pedidos, control de inventario, gestión de menús y reportes.
+El sistema soporta múltiples roles de usuario: administradores, chefs, meseros, clientes, y gestiona operaciones clave como la toma de pedidos, control de inventario, gestión de menús, reservas y reportes.
 
 ## 🤖 Cronograma:**
 [Link](https://docs.google.com/spreadsheets/d/1sU9yqRqmKJTXwxIzJmFOpNZCl_4W1LZl/edit?usp=drive_link&ouid=108198849053322034172&rtpof=true&sd=true)
@@ -77,37 +77,106 @@ RestauSync-main/
 │   ├── procedures.sql
 │   └── restausync (5).sql
 │
-├── 03_backend/                           # Backend (en desarrollo)
-├── 04_frontend_web/                      # Frontend web (en desarrollo)
-└── 05_frontend_movil/                    # Frontend móvil (en desarrollo)
+├── 03_backend/                           # Backend API (Node.js/TypeScript)
+│   └── backend/                          # Servidor Express con módulos para auth, inventario, mesas, etc.
+├── 04_frontend_web/                      # Frontend web (Angular/Ionic)
+│   └── frontend/                         # Aplicación web con interfaces para admin, mesero, cliente
+└── 05_frontend_movil/                    # Frontend móvil (Capacitor)
+    └── android/                          # Build de Android con la app híbrida
 ```
 
 ## Tecnologías Utilizadas
 
-- **Backend:** Python, Flask
+- **Backend API:** Node.js, TypeScript, Express.js
+- **Frontend Web:** Angular, Ionic, TypeScript
+- **Frontend Móvil:** Capacitor, Ionic
+- **Backend Legacy:** Python, Flask
 - **Base de Datos:** MySQL
-- **Frontend:** HTML5, CSS3, JavaScript, Bootstrap
-- **Herramientas:** Git, GitHub
+- **Frontend Legacy:** HTML5, CSS3, JavaScript, Bootstrap
+- **Herramientas:** Git, GitHub, VSCode
 - **Diagramas:** MySQL Workbench, Visual Paradigm
 
 ## Instalación y Ejecución
 
 ### Prerrequisitos
-- Python 3.8+
+- Node.js 18+
+- npm o yarn
+- Python 3.8+ (para backend legacy)
 - MySQL
-- pip
+- Android Studio (para móvil)
 
-### Pasos de Instalación
+### Backend API (Node.js/TypeScript)
 
-1. Clona el repositorio:
+1. Navega al directorio del backend:
    ```bash
-   git clone https://github.com/tu-usuario/RestauSync.git
-   cd RestauSync-main
+   cd 03_backend/backend
    ```
 
-2. Instala las dependencias de la aplicación principal:
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Configura variables de entorno:
+   - Copia `.env.example` a `.env` y ajusta configuraciones
+
+4. Ejecuta el servidor:
+   ```bash
+   npm run dev
+   ```
+
+El API estará disponible en `http://localhost:3000`
+
+### Frontend Web (Angular)
+
+1. Navega al directorio del frontend web:
+   ```bash
+   cd 04_frontend_web/frontend
+   ```
+
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Ejecuta la aplicación:
+   ```bash
+   npm start
+   ```
+
+La aplicación web estará disponible en `http://localhost:4200`
+
+### Frontend Móvil (Capacitor)
+
+1. Navega al directorio del frontend móvil:
+   ```bash
+   cd 05_frontend_movil
+   ```
+
+2. Instala dependencias:
+   ```bash
+   npm install
+   ```
+
+3. Construye para Android:
+   ```bash
+   npx cap build android
+   ```
+
+4. Abre en Android Studio:
+   ```bash
+   npx cap open android
+   ```
+
+### Backend Legacy (Python/Flask)
+
+1. Navega al directorio del proyecto Flask:
    ```bash
    cd 01_proyecto/trimestre_4/Proyecto
+   ```
+
+2. Instala dependencias:
+   ```bash
    pip install -r requirements.txt
    ```
 
@@ -115,8 +184,8 @@ RestauSync-main/
    - Crea una base de datos MySQL llamada `restausync`
    - Ejecuta los scripts SQL en `01_proyecto/trimestre_4/Base de datos/` o `02_base_datos/`
 
-4. Configura las variables de entorno:
-   - Copia `.env.example` a `.env` y ajusta las configuraciones
+4. Configura variables de entorno:
+   - Copia `.env.example` a `.env` y ajusta configuraciones
 
 5. Ejecuta la aplicación:
    ```bash
@@ -137,16 +206,8 @@ Este proyecto es de uso educativo y está disponible bajo la licencia MIT.
 
 - El proyecto se desarrolló como parte de un curso académico, dividido en trimestres.
 - Los prototipos en `trimestre_3` son versiones navegables en HTML/CSS/JS puro.
-- La aplicación final en `trimestre_4/Proyecto` es una implementación completa con Flask.
-- Las carpetas `03_backend`, `04_frontend_web` y `05_frontend_movil` están reservadas para futuras expansiones
-
-Commit 1: Actualización inicial.
-Commit 2: Segunda actualización.
-Commit 3: Tercera actualización.
-Commit 4: Cuarta actualización.
-Commit 5: Quinta actualización.
-Commit 6: Sexta actualización.
-Commit 7: Séptima actualización.
-Commit 8: Octava actualización.
-Commit 9: Novena actualización.
-Commit 10: Décima actualización.
+- La aplicación en `trimestre_4/Proyecto` es una implementación legacy con Flask.
+- El backend moderno en `03_backend` proporciona una API RESTful con TypeScript.
+- El frontend web en `04_frontend_web` es una aplicación SPA con Angular.
+- El frontend móvil en `05_frontend_movil` es una app híbrida con Capacitor para Android.
+- Todas las implementaciones comparten la misma base de datos MySQL.
