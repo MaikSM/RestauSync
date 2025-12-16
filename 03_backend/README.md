@@ -32,6 +32,7 @@ El backend está construido con Node.js y TypeScript, utilizando Express.js como
 ## Tecnologías
 
 - **Runtime**: Node.js 18+
+- **Variables de Entorno**: Archivo .env para configuración segura
 - **Lenguaje**: TypeScript
 - **Framework**: Express.js
 - **Base de Datos**: MySQL con mysql2
