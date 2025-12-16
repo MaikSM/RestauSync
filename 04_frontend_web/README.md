@@ -50,7 +50,9 @@ npm install
 npm start
 ```
 
-La aplicación estará disponible en `http://localhost:4200`
+La aplicación estará disponible en `http://localhost:4200`.
+
+> Nota: el endpoint del backend se configura en [`src/environments/environment.ts`](RestauSync/04_frontend_web/frontend/src/environments/environment.ts:1) y [`src/environments/environment.development.ts`](RestauSync/04_frontend_web/frontend/src/environments/environment.development.ts:1).
 
 ## Roles y Funcionalidades
 
