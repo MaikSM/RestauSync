@@ -4,7 +4,7 @@
 # RestauSync
 
 **📊 Presentación trimestre 6:**
-[Link](https://docs.google.com/presentation/d/1cb3NGtYcfXdklR3_MDdDhfMQn4S4nEf2/edit?usp=drivesdk&ouid=116668543162587748605&rtpof=true&sd=true)
+[Link](https://docs.google.com/presentation/d/1COZdCf70VxB1Z9DbwLaB5dgRcSih7dp4/edit?usp=drivesdk&ouid=116668543162587748605&rtpof=true&sd=true)
 
 
 
