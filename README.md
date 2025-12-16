@@ -22,67 +22,42 @@ El sistema soporta múltiples roles de usuario: administradores, chefs, meseros,
 
 ## Estructura del Proyecto
 
-El repositorio está organizado por fases de desarrollo y componentes principales:
+El repositorio está organizado por componentes principales. Cada carpeta raíz contiene un README.md con documentación detallada de su funcionamiento.
 
 ```
 RestauSync-main/
 │
-├── 01_proyecto/                          # Documentación y desarrollo del proyecto
-│   ├── trimestre_2/                      # Segundo trimestre: Planificación y requerimientos
-│   │   ├── 01_planteamiento_general/     # Planteamiento general del proyecto
-│   │   ├── 02_mapa_de_procesos/          # Mapas de procesos (BPMN, PDF)
-│   │   ├── 03_recoleccion_informacion/   # Recolección de información (entrevistas)
-│   │   ├── 04_requerimientos/            # Requerimientos funcionales
-│   │   ├── 05_casos_de_uso/              # Casos de uso
-│   │   ├── 06_mockup/                    # Mockups del sistema
-│   │   └── 07_ficha_tecnica/             # Ficha técnica y cotización
-│   │
-│   ├── trimestre_3/                      # Tercer trimestre: Diseño y prototipos
-│   │   ├── 1_modelo_relacional/          # Modelo relacional de la base de datos
-│   │   ├── 2_normalización/              # Normalización de la BD
-│   │   ├── 3_diccionario_de_datos/       # Diccionario de datos
-│   │   ├── 4_diagrama_de_clases/         # Diagramas de clases
-│   │   ├── 5_diagrama_de_distribución/   # Diagramas de distribución
-│   │   └── 6_prototipo_navegable/        # Prototipo navegable (HTML/CSS/JS)
-│   │       ├── Gestión_Usuarios/         # Gestión de usuarios
-│   │       ├── Inicio/                   # Página principal
-│   │       ├── Inventario/               # Gestión de inventario
-│   │       ├── Login_Register/           # Autenticación
-│   │       ├── Pedidos/                  # Gestión de pedidos
-│   │       ├── Reserva/                  # Reservas
-│   │       └── usuarios/                 # Interfaces por rol (admin, cliente, cocinero)
-│   │
-│   ├── trimestre_4/                      # Cuarto trimestre: Implementación final
-│   │   ├── Base de datos/                # Scripts SQL (consultas, datos, procedimientos)
-│   │   ├── Diagrama de clases/           # Diagramas de clases finales
-│   │   ├── Proyecto/                     # Aplicación Flask principal
-│   │   │   ├── app/                      # Código de la aplicación
-│   │   │   │   ├── controllers/          # Controladores (auth, admin, chef, etc.)
-│   │   │   │   ├── models/               # Modelos de datos
-│   │   │   │   ├── templates/            # Plantillas HTML
-│   │   │   │   └── static/               # Archivos estáticos (CSS, JS, imágenes)
-│   │   │   ├── config.py                 # Configuración
-│   │   │   ├── run.py                    # Script de ejecución
-│   │   │   ├── requirements.txt          # Dependencias Python
-│   │   │   └── readme.md                 # Estructura de la app Flask
-│   │   ├── Trabajo/                      # Versiones adicionales del proyecto
-│   │   └── Vistas/                       # Vistas y prototipos adicionales
-│   │
-│   └── trimestre_5/                      # Quinto trimestre (en desarrollo)
+├── 01_proyecto/                          # 📁 Documentación completa del proyecto por trimestres
+│   ├── trimestre_2/                      # Planificación y requerimientos
+│   ├── trimestre_3/                      # Diseño y prototipos
+│   ├── trimestre_4/                      # Implementación Flask (legacy)
+│   └── trimestre_5/                      # Desarrollo adicional
+│   └── README.md                         # 📖 Documentación detallada
 │
-├── 02_base_datos/                        # Scripts de base de datos adicionales
+├── 02_base_datos/                        # 🗄️ Scripts SQL adicionales
 │   ├── consultas.sql
 │   ├── datos.sql
 │   ├── funciones.sql
 │   ├── procedures.sql
 │   └── restausync (5).sql
+│   └── README.md                         # 📖 Guía de base de datos
 │
-├── 03_backend/                           # Backend API (Node.js/TypeScript)
-│   └── backend/                          # Servidor Express con módulos para auth, inventario, mesas, etc.
-├── 04_frontend_web/                      # Frontend web (Angular/Ionic)
-│   └── frontend/                         # Aplicación web con interfaces para admin, mesero, cliente
-└── 05_frontend_movil/                    # Frontend móvil (Capacitor)
-    └── android/                          # Build de Android con la app híbrida
+├── 03_backend/                           # 🚀 Backend API moderno (Node.js/TypeScript)
+│   └── backend/                          # Servidor Express con módulos RESTful
+│   └── README.md                         # 📖 Documentación de la API
+│
+├── 04_frontend_web/                      # 💻 Frontend web (Angular/Ionic)
+│   └── frontend/                         # SPA con interfaces por roles
+│   └── README.md                         # 📖 Guía de desarrollo web
+│
+├── 05_frontend_movil/                    # 📱 Frontend móvil (Capacitor)
+│   └── android/                          # Build nativo para Android
+│   └── README.md                         # 📖 Documentación móvil
+│
+├── .gitignore                            # 🚫 Reglas de ignorar archivos
+├── README.md                             # 📖 Documentación principal del proyecto
+├── fondo.png                             # 🖼️ Imagen de fondo
+└── readme.html                           # 🌐 Versión HTML del README
 ```
 
 ## Tecnologías Utilizadas
