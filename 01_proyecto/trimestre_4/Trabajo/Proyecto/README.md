@@ -64,3 +64,5 @@ coleccion_musical/
 ## Licencia
 
 Este proyecto es de uso libre.
+
+# Demo commit para verificar capacidad de modificación y push.
