@@ -50,7 +50,7 @@ npm run build
 npm run dev
 ```
 
-El servidor se ejecutará en `http://localhost:3000`
+El servidor se ejecutará en `http://localhost:${PORT}` (por defecto `http://localhost:4003` si no defines `PORT`)
 
 ## Endpoints Principales
 
