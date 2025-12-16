@@ -138,4 +138,4 @@ Este proyecto es de uso educativo y está disponible bajo la licencia MIT.
 - El proyecto se desarrolló como parte de un curso académico, dividido en trimestres.
 - Los prototipos en `trimestre_3` son versiones navegables en HTML/CSS/JS puro.
 - La aplicación final en `trimestre_4/Proyecto` es una implementación completa con Flask.
-- Las carpetas `03_backend`, `04_frontend_web` y `05_frontend_movil` están reservadas para futuras expansiones.
+- Las carpetas `03_backend`, `04_frontend_web` y `05_frontend_movil` están reservadas para futuras expansiones
