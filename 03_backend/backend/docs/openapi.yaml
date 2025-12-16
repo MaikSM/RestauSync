@@ -1,0 +1,2987 @@
+openapi: 3.0.3
+info:
+  title: Restausync API
+  description: Sistema integral para gestión de restaurantes (usuarios, pedidos, cocina, inventario y clientes)
+  version: 1.0.0
+  contact:
+    name: JEBC-DeV
+    email: jebcdev@example.com
+
+servers:
+  - url: http://localhost:4003/api/v1
+    description: Servidor de desarrollo
+  - url: https://api.restaurant-sync.com/api/v1
+    description: Servidor de producción
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Token JWT obtenido del endpoint /auth/login
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Error description"
+        data:
+          type: object
+          description: "Additional error data"
+
+    Usuario:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Juan"
+        surname:
+          type: string
+          example: "Pérez"
+        email:
+          type: string
+          format: email
+          example: "juan@example.com"
+        role:
+          $ref: '#/components/schemas/Rol'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    Rol:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          enum: [admin, chef, mesero, inventario]
+          example: "mesero"
+        description:
+          type: string
+          example: "Usuario mesero"
+
+    LoginRequest:
+      type: object
+      required:
+        - email
+        - password
+      properties:
+        email:
+          type: string
+          format: email
+          example: "admin@admin.com"
+        password:
+          type: string
+          example: "12345678"
+
+    LoginResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        role:
+          $ref: '#/components/schemas/Rol'
+        created_at:
+          type: string
+          format: date-time
+        token:
+          type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+    RegisterRequest:
+      type: object
+      required:
+        - name
+        - surname
+        - email
+        - password
+        - role_id
+      properties:
+        name:
+          type: string
+          example: "María"
+        surname:
+          type: string
+          example: "García"
+        email:
+          type: string
+          format: email
+          example: "maria@example.com"
+        password:
+          type: string
+          example: "securepassword123"
+        role_id:
+          type: integer
+          example: 2
+
+    Categoria:
+      type: object
+      properties:
+        categoria_id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Entradas"
+        descripcion:
+          type: string
+          example: "Platos de entrada y aperitivos"
+        tipo:
+          type: string
+          enum: [menu, inventario]
+          example: "menu"
+        activo:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateCategoriaRequest:
+      type: object
+      required:
+        - nombre
+        - tipo
+      properties:
+        nombre:
+          type: string
+          example: "Postres"
+        descripcion:
+          type: string
+          example: "Postres y dulces"
+        tipo:
+          type: string
+          enum: [menu, inventario]
+          example: "menu"
+        activo:
+          type: boolean
+          example: true
+
+    Ingrediente:
+      type: object
+      properties:
+        ingrediente_id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Tomate"
+        descripcion:
+          type: string
+          example: "Tomates frescos"
+        unidad_medida:
+          type: string
+          example: "kg"
+        stock_actual:
+          type: number
+          format: float
+          example: 25.5
+        stock_minimo:
+          type: number
+          format: float
+          example: 10.0
+        precio_unitario:
+          type: number
+          format: float
+          example: 2.50
+        categoria_id:
+          type: integer
+          example: 1
+        activo:
+          type: boolean
+          example: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateIngredienteRequest:
+      type: object
+      required:
+        - nombre
+        - unidad_medida
+        - stock_minimo
+        - precio_unitario
+        - categoria_id
+      properties:
+        nombre:
+          type: string
+          example: "Cebolla"
+        descripcion:
+          type: string
+          example: "Cebollas blancas"
+        unidad_medida:
+          type: string
+          example: "kg"
+        stock_actual:
+          type: number
+          format: float
+          example: 15.0
+        stock_minimo:
+          type: number
+          format: float
+          example: 5.0
+        precio_unitario:
+          type: number
+          format: float
+          example: 1.20
+        categoria_id:
+          type: integer
+          example: 2
+        activo:
+          type: boolean
+          example: true
+
+    Plato:
+      type: object
+      properties:
+        plato_id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Ensalada César"
+        descripcion:
+          type: string
+          example: "Lechuga romana fresca con aderezo César"
+        precio:
+          type: number
+          format: float
+          example: 25000
+        categoria:
+          type: string
+          example: "Entradas"
+        disponible:
+          type: boolean
+          example: true
+        tiempo_preparacion_minutos:
+          type: integer
+          example: 10
+        alergenos:
+          type: array
+          items:
+            type: string
+          example: ["lácteos", "gluten"]
+        imagen_url:
+          type: string
+          format: uri
+          example: "http://localhost:4003/uploads/plato-123.jpg"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreatePlatoRequest:
+      type: object
+      required:
+        - nombre
+        - precio
+        - categoria
+      properties:
+        nombre:
+          type: string
+          example: "Pasta Carbonara"
+        descripcion:
+          type: string
+          example: "Pasta fresca con salsa carbonara"
+        precio:
+          type: number
+          format: float
+          example: 35000
+        categoria:
+          type: string
+          example: "Platos Principales"
+        disponible:
+          type: boolean
+          example: true
+        tiempo_preparacion_minutos:
+          type: integer
+          example: 18
+        alergenos:
+          type: array
+          items:
+            type: string
+          example: ["gluten", "lácteos", "huevos"]
+
+    PlatoIngrediente:
+      type: object
+      properties:
+        plato_id:
+          type: integer
+          example: 1
+        ingrediente_id:
+          type: integer
+          example: 2
+        cantidad_requerida:
+          type: number
+          format: float
+          example: 0.2
+        unidad_medida:
+          type: string
+          example: "kg"
+
+    Mesa:
+      type: object
+      properties:
+        mesa_id:
+          type: integer
+          example: 1
+        numero_mesa:
+          type: integer
+          example: 5
+        capacidad:
+          type: integer
+          example: 4
+        estado:
+          type: string
+          enum: [libre, ocupada, reservada, mantenimiento]
+          example: "libre"
+        ubicacion:
+          type: string
+          example: "Terraza"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateMesaRequest:
+      type: object
+      required:
+        - numero_mesa
+        - capacidad
+      properties:
+        numero_mesa:
+          type: integer
+          example: 10
+        capacidad:
+          type: integer
+          example: 6
+        ubicacion:
+          type: string
+          example: "Interior"
+
+    Cliente:
+      type: object
+      properties:
+        cliente_id:
+          type: integer
+          example: 1
+        nombre:
+          type: string
+          example: "Carlos"
+        apellido:
+          type: string
+          example: "Rodríguez"
+        email:
+          type: string
+          format: email
+          example: "carlos@example.com"
+        telefono:
+          type: string
+          example: "+573001234567"
+        fecha_nacimiento:
+          type: string
+          format: date
+          example: "1990-05-15"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateClienteRequest:
+      type: object
+      required:
+        - nombre
+        - apellido
+        - email
+      properties:
+        nombre:
+          type: string
+          example: "Ana"
+        apellido:
+          type: string
+          example: "Martínez"
+        email:
+          type: string
+          format: email
+          example: "ana@example.com"
+        telefono:
+          type: string
+          example: "+573009876543"
+        fecha_nacimiento:
+          type: string
+          format: date
+          example: "1985-12-20"
+
+    Pedido:
+      type: object
+      properties:
+        pedido_id:
+          type: integer
+          example: 1
+        cliente_id:
+          type: integer
+          example: 1
+        mesa_id:
+          type: integer
+          example: 5
+        usuario_id:
+          type: integer
+          example: 2
+        estado:
+          type: string
+          enum: [recibido, en_preparacion, listo, entregado, pagado, cancelado]
+          example: "recibido"
+        tipo_pedido:
+          type: string
+          enum: [mesa, delivery, recoger]
+          example: "mesa"
+        total:
+          type: number
+          format: float
+          example: 75000
+        notas:
+          type: string
+          example: "Sin cebolla en la ensalada"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreatePedidoRequest:
+      type: object
+      required:
+        - cliente_id
+        - tipo_pedido
+      properties:
+        cliente_id:
+          type: integer
+          example: 1
+        mesa_id:
+          type: integer
+          example: 3
+        tipo_pedido:
+          type: string
+          enum: [mesa, delivery, recoger]
+          example: "mesa"
+        notas:
+          type: string
+          example: "Cliente alérgico a los frutos secos"
+
+    DetallePedido:
+      type: object
+      properties:
+        detalle_id:
+          type: integer
+          example: 1
+        pedido_id:
+          type: integer
+          example: 1
+        plato_id:
+          type: integer
+          example: 2
+        cantidad:
+          type: integer
+          example: 2
+        precio_unitario:
+          type: number
+          format: float
+          example: 25000
+        subtotal:
+          type: number
+          format: float
+          example: 50000
+        notas:
+          type: string
+          example: "Extra queso"
+        estado:
+          type: string
+          enum: [pendiente, en_preparacion, listo, entregado]
+          example: "pendiente"
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    CreateDetallePedidoRequest:
+      type: object
+      required:
+        - plato_id
+        - cantidad
+      properties:
+        plato_id:
+          type: integer
+          example: 3
+        cantidad:
+          type: integer
+          example: 1
+        notas:
+          type: string
+          example: "Sin salsa"
+
+    MovimientoInventario:
+      type: object
+      properties:
+        movimiento_id:
+          type: integer
+          example: 1
+        ingrediente_id:
+          type: integer
+          example: 1
+        usuario_id:
+          type: integer
+          example: 1
+        cantidad:
+          type: number
+          format: float
+          example: 10.5
+        tipo_movimiento:
+          type: string
+          enum: [entrada, salida, ajuste]
+          example: "entrada"
+        fecha:
+          type: string
+          format: date-time
+        motivo:
+          type: string
+          example: "Compra semanal"
+        costo_total:
+          type: number
+          format: float
+          example: 25.00
+        created_at:
+          type: string
+          format: date-time
+
+    CreateMovimientoInventarioRequest:
+      type: object
+      required:
+        - ingrediente_id
+        - cantidad
+        - tipo_movimiento
+        - motivo
+      properties:
+        ingrediente_id:
+          type: integer
+          example: 2
+        cantidad:
+          type: number
+          format: float
+          example: -5.0
+        tipo_movimiento:
+          type: string
+          enum: [entrada, salida, ajuste]
+          example: "salida"
+        motivo:
+          type: string
+          example: "Uso en preparación de platillos"
+        costo_total:
+          type: number
+          format: float
+          example: 12.50
+
+paths:
+  /auth/login:
+    post:
+      tags:
+        - Autenticación
+      summary: Iniciar sesión de usuario
+      description: Autentica a un usuario y devuelve un token JWT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Inicio de sesión exitoso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Datos de entrada inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Credenciales inválidas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/logout:
+    post:
+      tags:
+        - Autenticación
+      summary: Cerrar sesión de usuario
+      description: Invalida el token JWT del usuario
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Sesión cerrada exitosamente
+        '401':
+          description: Token inválido o expirado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /auth/me:
+    get:
+      tags:
+        - Autenticación
+      summary: Obtener información del usuario autenticado
+      description: Devuelve la información del usuario actualmente autenticado
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Información del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '401':
+          description: Token inválido o expirado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /usuarios:
+    get:
+      tags:
+        - Usuarios
+      summary: Listar usuarios
+      description: Obtiene una lista de todos los usuarios (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
+      responses:
+        '200':
+          description: Lista de usuarios
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Usuario'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Usuarios
+      summary: Crear nuevo usuario
+      description: Crea un nuevo usuario en el sistema (solo administradores)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: Usuario creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /usuarios/{usuario_id}:
+    get:
+      tags:
+        - Usuarios
+      summary: Obtener usuario por ID
+      description: Obtiene la información de un usuario específico
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: usuario_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      responses:
+        '200':
+          description: Información del usuario
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Usuarios
+      summary: Actualizar usuario
+      description: Actualiza la información de un usuario
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: usuario_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Nuevo Nombre"
+                surname:
+                  type: string
+                  example: "Nuevo Apellido"
+                email:
+                  type: string
+                  format: email
+                  example: "nuevo@example.com"
+                role_id:
+                  type: integer
+                  example: 3
+      responses:
+        '200':
+          description: Usuario actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Usuarios
+      summary: Eliminar usuario
+      description: Elimina un usuario del sistema (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: usuario_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      responses:
+        '200':
+          description: Usuario eliminado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /usuarios/{usuario_id}/activar:
+    patch:
+      tags:
+        - Usuarios
+      summary: Activar usuario
+      description: Activa una cuenta de usuario
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: usuario_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      responses:
+        '200':
+          description: Usuario activado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /usuarios/{usuario_id}/desactivar:
+    patch:
+      tags:
+        - Usuarios
+      summary: Desactivar usuario
+      description: Desactiva una cuenta de usuario
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: usuario_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del usuario
+      responses:
+        '200':
+          description: Usuario desactivado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Usuario'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /categorias:
+    get:
+      tags:
+        - Categorías
+      summary: Listar categorías
+      description: Obtiene una lista de todas las categorías
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: tipo
+          in: query
+          schema:
+            type: string
+            enum: [menu, inventario]
+          description: Filtrar por tipo de categoría
+      responses:
+        '200':
+          description: Lista de categorías
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Categoria'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Categorías
+      summary: Crear categoría
+      description: Crea una nueva categoría (solo administradores)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoriaRequest'
+      responses:
+        '201':
+          description: Categoría creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /categorias/{categoria_id}:
+    put:
+      tags:
+        - Categorías
+      summary: Actualizar categoría
+      description: Actualiza una categoría existente (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoria_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la categoría
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoriaRequest'
+      responses:
+        '200':
+          description: Categoría actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Categoria'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Categoría no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Categorías
+      summary: Eliminar categoría
+      description: Elimina una categoría (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoria_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la categoría
+      responses:
+        '200':
+          description: Categoría eliminada exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Categoría no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /ingredientes:
+    get:
+      tags:
+        - Ingredientes
+      summary: Listar ingredientes
+      description: Obtiene una lista de todos los ingredientes
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoria_id
+          in: query
+          schema:
+            type: integer
+          description: Filtrar por categoría
+        - name: bajo_stock
+          in: query
+          schema:
+            type: boolean
+          description: Mostrar solo ingredientes con stock bajo
+      responses:
+        '200':
+          description: Lista de ingredientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingrediente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Ingredientes
+      summary: Crear ingrediente
+      description: Crea un nuevo ingrediente (solo administradores)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIngredienteRequest'
+      responses:
+        '201':
+          description: Ingrediente creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingrediente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /ingredientes/{ingrediente_id}:
+    get:
+      tags:
+        - Ingredientes
+      summary: Obtener ingrediente por ID
+      description: Obtiene la información de un ingrediente específico
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ingrediente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del ingrediente
+      responses:
+        '200':
+          description: Información del ingrediente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingrediente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Ingredientes
+      summary: Actualizar ingrediente
+      description: Actualiza un ingrediente existente (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ingrediente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del ingrediente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIngredienteRequest'
+      responses:
+        '200':
+          description: Ingrediente actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ingrediente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Ingredientes
+      summary: Eliminar ingrediente
+      description: Elimina un ingrediente (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: ingrediente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del ingrediente
+      responses:
+        '200':
+          description: Ingrediente eliminado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /ingredientes/bajo-stock:
+    get:
+      tags:
+        - Ingredientes
+      summary: Ingredientes con stock bajo
+      description: Obtiene una lista de ingredientes que están por debajo del stock mínimo
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de ingredientes con stock bajo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Ingrediente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos:
+    get:
+      tags:
+        - Platillos
+      summary: Listar platillos
+      description: Obtiene una lista de todos los platillos
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoria
+          in: query
+          schema:
+            type: string
+          description: Filtrar por categoría
+        - name: disponible
+          in: query
+          schema:
+            type: boolean
+          description: Filtrar por disponibilidad
+        - name: vegetariano
+          in: query
+          schema:
+            type: boolean
+          description: Mostrar solo platillos vegetarianos
+        - name: vegano
+          in: query
+          schema:
+            type: boolean
+          description: Mostrar solo platillos veganos
+      responses:
+        '200':
+          description: Lista de platillos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Platillos
+      summary: Crear platillo
+      description: Crea un nuevo platillo (solo administradores o chefs)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlatoRequest'
+      responses:
+        '201':
+          description: Platillo creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plato'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/{plato_id}:
+    get:
+      tags:
+        - Platillos
+      summary: Obtener platillo por ID
+      description: Obtiene la información de un platillo específico
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '200':
+          description: Información del platillo
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Platillos
+      summary: Actualizar platillo
+      description: Actualiza un platillo existente (solo administradores o chefs)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePlatoRequest'
+      responses:
+        '200':
+          description: Platillo actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plato'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Platillos
+      summary: Eliminar platillo
+      description: Elimina un platillo (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '200':
+          description: Platillo eliminado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/{plato_id}/activar:
+    patch:
+      tags:
+        - Platillos
+      summary: Activar platillo
+      description: Activa un platillo para que esté disponible en el menú
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '200':
+          description: Platillo activado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/categoria/{categoria}:
+    get:
+      tags:
+        - Platillos
+      summary: Platillos por categoría
+      description: Obtiene una lista de platillos filtrados por categoría
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: categoria
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Nombre de la categoría
+      responses:
+        '200':
+          description: Lista de platillos de la categoría
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/vegetarianos:
+    get:
+      tags:
+        - Platillos
+      summary: Platillos vegetarianos
+      description: Obtiene una lista de platillos vegetarianos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de platillos vegetarianos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/veganos:
+    get:
+      tags:
+        - Platillos
+      summary: Platillos veganos
+      description: Obtiene una lista de platillos veganos
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de platillos veganos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/{plato_id}/ingredientes:
+    get:
+      tags:
+        - Recetas
+      summary: Ingredientes de un platillo
+      description: Obtiene la lista de ingredientes necesarios para preparar un platillo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '200':
+          description: Lista de ingredientes del platillo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PlatoIngrediente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Recetas
+      summary: Agregar ingrediente a platillo
+      description: Agrega un ingrediente a la receta de un platillo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ingrediente_id
+                - cantidad_requerida
+                - unidad_medida
+              properties:
+                ingrediente_id:
+                  type: integer
+                  example: 2
+                cantidad_requerida:
+                  type: number
+                  format: float
+                  example: 0.3
+                unidad_medida:
+                  type: string
+                  example: "kg"
+      responses:
+        '201':
+          description: Ingrediente agregado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatoIngrediente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo o ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /platillos/{plato_id}/ingredientes/{ingrediente_id}:
+    put:
+      tags:
+        - Recetas
+      summary: Actualizar ingrediente en platillo
+      description: Actualiza la cantidad de un ingrediente en la receta de un platillo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+        - name: ingrediente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del ingrediente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - cantidad_requerida
+                - unidad_medida
+              properties:
+                cantidad_requerida:
+                  type: number
+                  format: float
+                  example: 0.5
+                unidad_medida:
+                  type: string
+                  example: "kg"
+      responses:
+        '200':
+          description: Ingrediente actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlatoIngrediente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo o ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Recetas
+      summary: Eliminar ingrediente de platillo
+      description: Elimina un ingrediente de la receta de un platillo
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: plato_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+        - name: ingrediente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del ingrediente
+      responses:
+        '200':
+          description: Ingrediente eliminado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Platillo o ingrediente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /mesas:
+    get:
+      tags:
+        - Mesas
+      summary: Listar mesas
+      description: Obtiene una lista de todas las mesas
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: estado
+          in: query
+          schema:
+            type: string
+            enum: [libre, ocupada, reservada, mantenimiento]
+          description: Filtrar por estado de mesa
+      responses:
+        '200':
+          description: Lista de mesas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Mesa'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Mesas
+      summary: Crear mesa
+      description: Crea una nueva mesa (solo administradores)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMesaRequest'
+      responses:
+        '201':
+          description: Mesa creada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mesa'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /mesas/{mesa_id}:
+    put:
+      tags:
+        - Mesas
+      summary: Actualizar mesa
+      description: Actualiza la información de una mesa (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: mesa_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la mesa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMesaRequest'
+      responses:
+        '200':
+          description: Mesa actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mesa'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Mesa no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /mesas/{mesa_id}/estado:
+    patch:
+      tags:
+        - Mesas
+      summary: Cambiar estado de mesa
+      description: Cambia el estado de una mesa (meseros y administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: mesa_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID de la mesa
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - estado
+              properties:
+                estado:
+                  type: string
+                  enum: [libre, ocupada, reservada, mantenimiento]
+                  example: "ocupada"
+      responses:
+        '200':
+          description: Estado de mesa actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Mesa'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Mesa no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clientes:
+    get:
+      tags:
+        - Clientes
+      summary: Listar clientes
+      description: Obtiene una lista de todos los clientes
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
+      responses:
+        '200':
+          description: Lista de clientes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Cliente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Clientes
+      summary: Crear cliente
+      description: Crea un nuevo cliente
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClienteRequest'
+      responses:
+        '201':
+          description: Cliente creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clientes/{cliente_id}:
+    get:
+      tags:
+        - Clientes
+      summary: Obtener cliente por ID
+      description: Obtiene la información de un cliente específico
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+      responses:
+        '200':
+          description: Información del cliente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Clientes
+      summary: Actualizar cliente
+      description: Actualiza la información de un cliente
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClienteRequest'
+      responses:
+        '200':
+          description: Cliente actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cliente'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Clientes
+      summary: Eliminar cliente
+      description: Elimina un cliente (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+      responses:
+        '200':
+          description: Cliente eliminado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clientes/{cliente_id}/favoritos:
+    get:
+      tags:
+        - Favoritos
+      summary: Favoritos del cliente
+      description: Obtiene la lista de platillos favoritos de un cliente
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+      responses:
+        '200':
+          description: Lista de platillos favoritos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Plato'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Favoritos
+      summary: Agregar a favoritos
+      description: Agrega un platillo a los favoritos de un cliente
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+        - name: plato_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '201':
+          description: Platillo agregado a favoritos exitosamente
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente o platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Favoritos
+      summary: Eliminar de favoritos
+      description: Elimina un platillo de los favoritos de un cliente
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: cliente_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del cliente
+        - name: plato_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: ID del platillo
+      responses:
+        '200':
+          description: Platillo eliminado de favoritos exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Cliente o platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /pedidos:
+    get:
+      tags:
+        - Pedidos
+      summary: Listar pedidos
+      description: Obtiene una lista de todos los pedidos
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: estado
+          in: query
+          schema:
+            type: string
+            enum: [recibido, en_preparacion, listo, entregado, pagado, cancelado]
+          description: Filtrar por estado del pedido
+        - name: tipo_pedido
+          in: query
+          schema:
+            type: string
+            enum: [mesa, delivery, recoger]
+          description: Filtrar por tipo de pedido
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
+      responses:
+        '200':
+          description: Lista de pedidos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Pedido'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Pedidos
+      summary: Crear pedido
+      description: Crea un nuevo pedido
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePedidoRequest'
+      responses:
+        '201':
+          description: Pedido creado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /pedidos/{pedido_id}:
+    get:
+      tags:
+        - Pedidos
+      summary: Obtener pedido por ID
+      description: Obtiene la información detallada de un pedido específico
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pedido_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del pedido
+      responses:
+        '200':
+          description: Información del pedido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Pedido no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      tags:
+        - Pedidos
+      summary: Cambiar estado del pedido
+      description: Actualiza el estado de un pedido
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pedido_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - estado
+              properties:
+                estado:
+                  type: string
+                  enum: [recibido, en_preparacion, listo, entregado, pagado, cancelado]
+                  example: "en_preparacion"
+      responses:
+        '200':
+          description: Estado del pedido actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Pedido'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Pedido no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      tags:
+        - Pedidos
+      summary: Cancelar pedido
+      description: Cancela un pedido (solo administradores)
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pedido_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del pedido
+      responses:
+        '200':
+          description: Pedido cancelado exitosamente
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Pedido no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /pedidos/{pedido_id}/detalles:
+    post:
+      tags:
+        - Detalles de Pedido
+      summary: Agregar detalle al pedido
+      description: Agrega un platillo al pedido
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: pedido_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDetallePedidoRequest'
+      responses:
+        '201':
+          description: Detalle agregado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetallePedido'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Pedido o platillo no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /detalles-pedido/{detalle_id}:
+    put:
+      tags:
+        - Detalles de Pedido
+      summary: Actualizar detalle del pedido
+      description: Actualiza la cantidad o notas de un detalle del pedido
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: detalle_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del detalle del pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cantidad:
+                  type: integer
+                  example: 3
+                notas:
+                  type: string
+                  example: "Extra queso y sin cebolla"
+      responses:
+        '200':
+          description: Detalle actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetallePedido'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Detalle no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    patch:
+      tags:
+        - Detalles de Pedido
+      summary: Cambiar estado del detalle
+      description: Actualiza el estado de preparación de un detalle del pedido
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: detalle_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: ID del detalle del pedido
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - estado
+              properties:
+                estado:
+                  type: string
+                  enum: [pendiente, en_preparacion, listo, entregado]
+                  example: "listo"
+      responses:
+        '200':
+          description: Estado del detalle actualizado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetallePedido'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Detalle no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /inventario:
+    get:
+      tags:
+        - Inventario
+      summary: Listar movimientos de inventario
+      description: Obtiene una lista de movimientos de inventario
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: tipo_movimiento
+          in: query
+          schema:
+            type: string
+            enum: [entrada, salida, ajuste]
+          description: Filtrar por tipo de movimiento
+        - name: fecha_desde
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Fecha desde (YYYY-MM-DD)
+        - name: fecha_hasta
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Fecha hasta (YYYY-MM-DD)
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
+      responses:
+        '200':
+          description: Lista de movimientos de inventario
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovimientoInventario'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    post:
+      tags:
+        - Inventario
+      summary: Registrar movimiento de entrada
+      description: Registra un movimiento de entrada al inventario
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMovimientoInventarioRequest'
+      responses:
+        '201':
+          description: Movimiento registrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovimientoInventario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /inventario/entrada:
+    post:
+      tags:
+        - Inventario
+      summary: Registrar entrada al inventario
+      description: Registra una entrada de mercancía al inventario
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMovimientoInventarioRequest'
+      responses:
+        '201':
+          description: Entrada registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovimientoInventario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /inventario/salida:
+    post:
+      tags:
+        - Inventario
+      summary: Registrar salida del inventario
+      description: Registra una salida de mercancía del inventario
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ingrediente_id
+                - cantidad
+                - motivo
+              properties:
+                ingrediente_id:
+                  type: integer
+                  example: 2
+                cantidad:
+                  type: number
+                  format: float
+                  example: 2.5
+                motivo:
+                  type: string
+                  example: "Uso en preparación de platillos"
+      responses:
+        '201':
+          description: Salida registrada exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovimientoInventario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /inventario/ajuste:
+    post:
+      tags:
+        - Inventario
+      summary: Registrar ajuste de inventario
+      description: Registra un ajuste en el inventario (solo administradores)
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - ingrediente_id
+                - cantidad
+                - motivo
+              properties:
+                ingrediente_id:
+                  type: integer
+                  example: 1
+                cantidad:
+                  type: number
+                  format: float
+                  example: -1.0
+                motivo:
+                  type: string
+                  example: "Corrección por inventario físico"
+      responses:
+        '201':
+          description: Ajuste registrado exitosamente
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MovimientoInventario'
+        '400':
+          description: Datos inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '403':
+          description: Permisos insuficientes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'

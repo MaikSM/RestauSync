@@ -1,0 +1,1 @@
+import{Na as n,ib as o}from"./chunk-CFQE6O6P.js";var a=class t{static \u0275fac=function(e){return new(e||t)};static \u0275cmp=n({type:t,selectors:[["app-chat"]],decls:1,vars:0,consts:[[1,"chat-container"]],template:function(e,p){e&1&&o(0,"div",0)},encapsulation:2})};export{a};

@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="84e46c01-53f2-4ffa-b6f4-744f7809770f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/app.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/core/config/database.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/core/config/database.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/core/middlewares/isAdmin.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/core/middlewares/isAdmin.middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/core/middlewares/tokenExists.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/core/middlewares/tokenExists.middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/core/middlewares/verifyId.middleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/core/middlewares/verifyId.middleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/_root/_root.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/_root/_root.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/_root/_root.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/_root/_root.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/controllers/auth.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/controllers/auth.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/login-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/login-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/register-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/register-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/dtos/update-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/repositories/iauth.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/repositories/iauth.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/routes/auth.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/routes/auth.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/auth/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/auth/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/database/DatabaseConnection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/database/DatabaseConnection.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/controllers/role.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/controllers/role.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/dtos/create-role.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/dtos/create-role.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/dtos/update-role.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/dtos/update-role.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/entities/role.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/entities/role.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/repositories/irole.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/repositories/irole.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/routes/role.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/routes/role.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/role/services/role.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/role/services/role.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/seeder/controllers/seeder.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/seeder/controllers/seeder.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/seeder/routes/seeder.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/seeder/routes/seeder.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/controllers/user.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/controllers/user.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/dtos/create-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/dtos/create-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/dtos/update-user.dto.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/dtos/update-user.dto.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/entities/user.entity.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/entities/user.entity.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/repositories/iuser.repository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/repositories/iuser.repository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/routes/user.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/routes/user.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/modules/user/services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/modules/user/services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/server.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/server.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/bcrypt.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/utils/bcrypt.util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/jwt.util.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/src/utils/jwt.util.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/http/01-seed.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/http/02-auth.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/http/03-users.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/http/_root.http" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/thunder-collection_basic-auth-management-ts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/src/utils/requests/thunder-collection_postman_basic-auth-management-ts.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../backend/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../backend/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.postcssrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.postcssrc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/extensions.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/extensions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/launch.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.vscode/tasks.json" beforeDir="false" afterPath="$PROJECT_DIR$/../.vscode/tasks.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/../angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/admin-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/admin-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/admin-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/admin-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-content/admin-layout-content.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-content/admin-layout-content.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-content/admin-layout-content.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-content/admin-layout-content.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-side-bar/admin-layout-side-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-side-bar/admin-layout-side-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-side-bar/admin-layout-side-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/components/admin-layout-side-bar/admin-layout-side-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/_layout/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/_layout/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/_dashboard/admin-dashboard-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/_dashboard/admin-dashboard-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/_dashboard/admin-dashboard-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/_dashboard/admin-dashboard-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/admin-roles-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/admin-roles-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/admin-roles-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/admin-roles-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/form/admin-roles-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/form/admin-roles-form.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/form/admin-roles-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/form/admin-roles-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/admin-roles-table.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/admin-roles-table.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/admin-roles-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/admin-roles-table.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/roles-table-columns.definition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/components/table/roles-table-columns.definition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/create/admin-roles-create-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/create/admin-roles-create-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/create/admin-roles-create-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/create/admin-roles-create-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/edit/admin-roles-edit-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/edit/admin-roles-edit-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/roles/edit/admin-roles-edit-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/roles/edit/admin-roles-edit-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/admin-users-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/admin-users-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/admin-users-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/admin-users-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/components/form/admin-users-form.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/components/form/admin-users-form.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/components/form/admin-users-form.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/components/form/admin-users-form.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/admin-users-table.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/admin-users-table.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/admin-users-table.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/admin-users-table.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/users-table-columns.definition.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/components/table/users-table-columns.definition.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/create/admin-users-create-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/create/admin-users-create-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/create/admin-users-create-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/create/admin-users-create-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/edit/admin-users-edit-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/edit/admin-users-edit-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/pages/users/edit/admin-users-edit-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/pages/users/edit/admin-users-edit-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/routes/admin.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/routes/admin.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/services/roles.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/services/roles.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/admin/services/users.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/admin/services/users.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/auth-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/auth-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/auth-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/auth-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/content/auth-layout-content.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/content/auth-layout-content.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/content/auth-layout-content.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/content/auth-layout-content.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/footer/auth-layout-footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/footer/auth-layout-footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/footer/auth-layout-footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/footer/auth-layout-footer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/header/auth-layout-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/header/auth-layout-header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/header/auth-layout-header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/header/auth-layout-header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/nav-bar/auth-layout-nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/nav-bar/auth-layout-nav-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/_layout/components/nav-bar/auth-layout-nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/_layout/components/nav-bar/auth-layout-nav-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/interfaces/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/interfaces/login-request.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/interfaces/login-request.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/interfaces/register-request.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/interfaces/register-request.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/interfaces/role.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/interfaces/role.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/interfaces/user.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/interfaces/user.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/pages/login/auth-login-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/pages/login/auth-login-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/pages/login/auth-login-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/pages/login/auth-login-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/pages/register/auth-register-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/pages/register/auth-register-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/pages/register/auth-register-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/pages/register/auth-register-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/routes/auth.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/routes/auth.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/auth/services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/auth/services/auth.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/content/front-layout-content.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/content/front-layout-content.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/content/front-layout-content.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/content/front-layout-content.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/footer/front-layout-footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/footer/front-layout-footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/footer/front-layout-footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/footer/front-layout-footer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/header/front-layout-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/header/front-layout-header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/header/front-layout-header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/header/front-layout-header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/navbar/front-layout-nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/navbar/front-layout-nav-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/components/navbar/front-layout-nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/components/navbar/front-layout-nav-bar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/front-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/front-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/_layout/front-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/_layout/front-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/pages/home/front-home-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/pages/home/front-home-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/pages/home/front-home-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/pages/home/front-home-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/front/routes/front.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/front/routes/front.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/content/private-layout-content.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/content/private-layout-content.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/content/private-layout-content.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/content/private-layout-content.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/footer/private-layout-footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/footer/private-layout-footer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/footer/private-layout-footer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/footer/private-layout-footer.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/header/private-layout-header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/header/private-layout-header.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/header/private-layout-header.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/header/private-layout-header.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/navbar/private-layout-navbar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/navbar/private-layout-navbar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/components/navbar/private-layout-navbar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/components/navbar/private-layout-navbar.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/private-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/private-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/_layout/private-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/_layout/private-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/pages/profile/private-profile-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/pages/profile/private-profile-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/pages/profile/private-profile-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/pages/profile/private-profile-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/private/routes/private.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/private/routes/private.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/components/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/components/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/components/is-empty/is-empty.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/components/is-empty/is-empty.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/components/is-error/is-error.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/components/is-error/is-error.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/components/is-loading/is-loading.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/components/is-loading/is-loading.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/guards/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/guards/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/guards/is-admin.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/guards/is-admin.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/guards/is-authenticated.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/guards/is-authenticated.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/guards/not-authenticated.guard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/guards/not-authenticated.guard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/interceptors/auth.interceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/interceptors/auth.interceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/interfaces/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/interfaces/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/interfaces/menu-item.interface.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/interfaces/menu-item.interface.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/pages/not-found/shared-not-found-page.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/pages/not-found/shared-not-found-page.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/app/shared/pages/not-found/shared-not-found-page.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/app/shared/pages/not-found/shared-not-found-page.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/environments/environment.development.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.development.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/../src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/../tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../tsconfig.spec.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="android" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JaiderSe"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jebcdev/BasicNgFullStack.git",
+    "accountId": "608b8e37-9439-487b-b4d7-72efe13ad635"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="3481ipd5tGqLgNdnmddS2nhftm3" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="android.app" />
+      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="RESTORE_ENABLED" value="false" />
+      <option name="RESTORE_FILE" value="" />
+      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="84e46c01-53f2-4ffa-b6f4-744f7809770f" name="Changes" comment="" />
+      <created>1760580515692</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760580515692</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="play_dynamic_filters_status">
+    <option name="appIdToCheckInfo">
+      <map>
+        <entry key="com.restausync.app">
+          <value>
+            <CheckInfo lastCheckTimestamp="1763672008182" />
+          </value>
+        </entry>
+        <entry key="com.restausync.app.test">
+          <value>
+            <CheckInfo lastCheckTimestamp="1763672008182" />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
