@@ -1,5 +1,6 @@
 # Main application entry point for RestauSync Flask app
 # This initializes the Flask app
+import os
 from app import create_app
 
 app = create_app()
