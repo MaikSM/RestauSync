@@ -7,6 +7,10 @@ import { RootRoutes } from './modules/_root/_root.routes';
 import { DatabaseConnection } from './modules/database/DatabaseConnection';
 import { swaggerUi, swaggerSpec } from './docs/swagger';
 
+/**
+ * Clase principal del servidor RestauSync
+ * Maneja la configuración, middlewares y rutas de la aplicación
+ */
 export class Server {
   // Propiedades privadas de la clase Server
   private app: Application;
@@ -14,10 +18,10 @@ export class Server {
   private apiPrefix: string;
 
   // Constructor que inicializa la aplicación
-  // Restart trigger - updated port
   constructor() {
     this.app = express();
-    this.port = parseInt(process.env.PORT || '4003', 10) || 4003; // Changed default to 4003 to match frontend config
+    // Puerto configurable por variable de entorno; por defecto 4003 (alineado con la config del frontend)
+    this.port = parseInt(process.env.PORT || '4003', 10) || 4003;
     this.apiPrefix = process.env.API_PREFIX || '/api/v1';
     this.middlewares(); // Llama al método de middlewares
     // this.routes(); // Mover a listen() después de DB init
