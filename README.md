@@ -141,3 +141,4 @@ Este proyecto es de uso educativo y está disponible bajo la licencia MIT.
 - Las carpetas `03_backend`, `04_frontend_web` y `05_frontend_movil` están reservadas para futuras expansiones
 
 Commit 1: Actualización inicial.
+Commit 2: Segunda actualización.
