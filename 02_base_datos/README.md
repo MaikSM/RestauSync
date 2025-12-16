@@ -12,7 +12,7 @@ Esta carpeta contiene scripts adicionales de base de datos para el proyecto Rest
 
 ## Base de Datos
 
-La base de datos `restausync` está diseñada con MySQL y contiene las siguientes entidades principales:
+La base de datos `restausync` está diseñada con MySQL y requiere MySQL 8.0 o superior. Contiene las siguientes entidades principales:
 - Usuarios (con roles: admin, chef, mesero, cliente)
 - Inventario (ingredientes, productos)
 - Menús (platos, categorías)

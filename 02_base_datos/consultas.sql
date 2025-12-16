@@ -1,4 +1,5 @@
 -- Consultas para el modelo Platillo
+-- Sección dedicada a operaciones CRUD de platillos
 INSERT INTO platillos (
     nombre, categoria_id, descripcion, precio, 
     tiempo_preparacion, activo, es_vegano, 
