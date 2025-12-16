@@ -11,6 +11,7 @@ service = AuthService()
 @auth_bp.route('/login', methods=['GET', 'POST'])
 @logout_required
 def login():
+    """Handle user login."""
     form = LoginForm()
     if form.validate_on_submit():
         user = service.authenticate_user(form.email.data, form.password.data)
