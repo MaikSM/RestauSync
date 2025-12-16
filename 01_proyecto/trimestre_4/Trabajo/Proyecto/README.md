@@ -64,3 +64,5 @@ coleccion_musical/
 ## Licencia
 
 Este proyecto es de uso libre.
+
+<!-- End of README -->
