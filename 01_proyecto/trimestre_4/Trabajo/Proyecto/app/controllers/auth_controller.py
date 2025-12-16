@@ -12,9 +12,9 @@ service = AuthService()
 @logout_required
 def login():
     """Handle user login."""
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = service.authenticate_user(form.email.data, form.password.data)
+    login_form = LoginForm()
+    if login_form.validate_on_submit():
+        user = service.authenticate_user(login_form.email.data, login_form.password.data)
         if user:
             login_user(user)
             flash('Inicio de sesión exitoso', 'success')
@@ -22,7 +22,7 @@ def login():
             return redirect(next_page)
         else:
             flash('Email o contraseña incorrectos', 'danger')
-    return render_template('auth/login.html', form=form)
+    return render_template('auth/login.html', form=login_form)
 
 @auth_bp.route('/register', methods=['GET', 'POST'])
 @logout_required
