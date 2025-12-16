@@ -4,11 +4,11 @@ Esta carpeta contiene scripts adicionales de base de datos para el proyecto Rest
 
 ## Archivos
 
-- **consultas.sql**: Consultas SQL para operaciones comunes en la base de datos
-- **datos.sql**: Scripts para insertar datos de prueba y configuración inicial
-- **funciones.sql**: Funciones almacenadas en MySQL para lógica de negocio
-- **procedures.sql**: Procedimientos almacenados para operaciones complejas
-- **restausync (5).sql**: Script completo de creación de la base de datos
+- **consultas.sql**: Consultas SQL para operaciones comunes en la base de datos.
+- **datos.sql**: Scripts para insertar datos de prueba y configuración inicial.
+- **funciones.sql**: Funciones almacenadas en MySQL para lógica de negocio.
+- **procedures.sql**: Procedimientos almacenados para operaciones complejas.
+- **restausync (5).sql**: Script completo de creación de la base de datos (dump principal).
 
 ## Base de Datos
 
