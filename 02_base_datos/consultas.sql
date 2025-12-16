@@ -1,5 +1,6 @@
 -- Consultas para el modelo Platillo
 -- Sección dedicada a operaciones CRUD de platillos
+-- Nota: algunas consultas incluyen placeholders (p. ej. {columna1}, {group_by}) para reemplazo dinámico en el backend.
 INSERT INTO platillos (
     nombre, categoria_id, descripcion, precio, 
     tiempo_preparacion, activo, es_vegano, 
@@ -351,3 +352,214 @@ JOIN platillos p ON d.platillo_id = p.platillo_id
 JOIN pedidos pe ON d.pedido_id = pe.pedido_id
 JOIN mesas m ON pe.mesa_id = m.mesa_id
 WHERE d.detalle_id = %s;
+-- Consultas adicionales para el modelo Reserva
+INSERT INTO reservas (
+    cliente_id, mesa_id, usuario_id, fecha_reserva, hora_reserva,
+    numero_personas, estado, notas
+) VALUES (
+    %(cliente_id)s, %(mesa_id)s, %(usuario_id)s, %(fecha_reserva)s, %(hora_reserva)s,
+    %(numero_personas)s, 'confirmada', %(notas)s
+);
+
+SELECT r.*, c.nombre as cliente_nombre, m.numero_mesa, u.nombre as usuario_nombre
+FROM reservas r
+LEFT JOIN clientes c ON r.cliente_id = c.cliente_id
+LEFT JOIN mesas m ON r.mesa_id = m.mesa_id
+LEFT JOIN usuarios u ON r.usuario_id = u.usuario_id
+ORDER BY r.fecha_reserva DESC, r.hora_reserva DESC;
+
+SELECT r.*, c.nombre as cliente_nombre, m.numero_mesa
+FROM reservas r
+LEFT JOIN clientes c ON r.cliente_id = c.cliente_id
+LEFT JOIN mesas m ON r.mesa_id = m.mesa_id
+WHERE r.reserva_id = %s;
+
+UPDATE reservas
+SET fecha_reserva = %(fecha_reserva)s, hora_reserva = %(hora_reserva)s,
+    numero_personas = %(numero_personas)s, estado = %(estado)s, notas = %(notas)s
+WHERE reserva_id = %(reserva_id)s;
+
+DELETE FROM reservas WHERE reserva_id = %s;
+
+-- Consultas adicionales para el modelo Rol
+INSERT INTO roles (nombre, descripcion, permisos)
+VALUES (%s, %s, %s);
+
+SELECT * FROM roles ORDER BY nombre;
+
+SELECT * FROM roles WHERE rol_id = %s;
+
+UPDATE roles
+SET nombre = %s, descripcion = %s, permisos = %s
+WHERE rol_id = %s;
+
+DELETE FROM roles WHERE rol_id = %s;
+
+-- Consultas adicionales para el modelo Asistencia
+INSERT INTO asistencia (usuario_id, fecha, hora_entrada, hora_salida, estado)
+VALUES (%s, %s, %s, %s, %s);
+
+SELECT a.*, u.nombre as usuario_nombre
+FROM asistencia a
+JOIN usuarios u ON a.usuario_id = u.usuario_id
+WHERE DATE(a.fecha) = %s
+ORDER BY a.hora_entrada;
+
+SELECT a.*, u.nombre as usuario_nombre
+FROM asistencia a
+JOIN usuarios u ON a.usuario_id = u.usuario_id
+WHERE a.usuario_id = %s AND MONTH(a.fecha) = %s AND YEAR(a.fecha) = %s
+ORDER BY a.fecha;
+
+UPDATE asistencia
+SET hora_salida = %s, estado = %s
+WHERE asistencia_id = %s;
+
+SELECT COUNT(*) as total_asistencias
+FROM asistencia
+WHERE usuario_id = %s AND MONTH(fecha) = %s AND YEAR(fecha) = %s;
+
+-- Consultas adicionales misceláneas
+SELECT u.*, r.nombre as rol_nombre
+FROM usuarios u
+LEFT JOIN roles r ON u.rol = r.rol_id
+ORDER BY u.nombre;
+
+SELECT c.*, COUNT(r.reserva_id) as total_reservas
+FROM clientes c
+LEFT JOIN reservas r ON c.cliente_id = r.cliente_id
+GROUP BY c.cliente_id
+ORDER BY total_reservas DESC;
+
+SELECT i.*, iv.fecha as ultima_movimiento
+FROM ingredientes i
+LEFT JOIN inventario iv ON i.ingrediente_id = iv.ingrediente_id
+WHERE i.stock_actual < i.stock_minimo
+GROUP BY i.ingrediente_id
+ORDER BY i.stock_actual / i.stock_minimo;
+
+SELECT p.*, COUNT(dp.pedido_id) as veces_pedido
+FROM platillos p
+JOIN detalles_pedido dp ON p.platillo_id = dp.platillo_id
+JOIN pedidos pe ON dp.pedido_id = pe.pedido_id
+WHERE pe.estado = 'pagado' AND DATE(pe.fecha_hora) BETWEEN %s AND %s
+GROUP BY p.platillo_id
+ORDER BY veces_pedido DESC
+LIMIT 10;
+
+SELECT DATE(fecha_hora) as fecha, COUNT(*) as total_pedidos, SUM(total) as total_ventas
+FROM pedidos
+WHERE estado = 'pagado' AND DATE(fecha_hora) BETWEEN %s AND %s
+GROUP BY DATE(fecha_hora)
+ORDER BY fecha;
+-- Consulta adicional 1: Obtener platillos por rango de precio
+SELECT * FROM platillos
+WHERE precio BETWEEN %s AND %s AND activo = TRUE
+ORDER BY precio;
+
+-- Consulta adicional 2: Obtener pedidos por estado y fecha
+SELECT * FROM pedidos
+WHERE estado = %s AND DATE(fecha_hora) = %s
+ORDER BY fecha_hora DESC;
+
+-- Consulta adicional 3: Obtener usuarios por rol
+SELECT * FROM usuarios
+WHERE rol = %s AND activo = TRUE
+ORDER BY nombre;
+
+-- Consulta adicional 4: Obtener inventario por tipo de movimiento
+SELECT * FROM inventario
+WHERE tipo_movimiento = %s
+ORDER BY fecha DESC;
+
+-- Consulta adicional 5: Obtener categorías con conteo de platillos
+SELECT c.*, COUNT(p.platillo_id) as total_platillos
+FROM categorias c
+LEFT JOIN platillos p ON c.categoria_id = p.categoria_id AND p.activo = TRUE
+GROUP BY c.categoria_id
+ORDER BY c.orden_menu;
+
+-- Consulta adicional 6: Obtener ingredientes por proveedor
+SELECT * FROM ingredientes
+WHERE proveedor_principal = %s
+ORDER BY nombre;
+
+-- Consulta adicional 7: Obtener clientes con reservas activas
+SELECT c.*, COUNT(r.reserva_id) as reservas_activas
+FROM clientes c
+LEFT JOIN reservas r ON c.cliente_id = r.cliente_id AND r.estado = 'confirmada'
+GROUP BY c.cliente_id
+HAVING reservas_activas > 0
+ORDER BY reservas_activas DESC;
+
+-- Consulta adicional 8: Obtener mesas disponibles por capacidad
+SELECT * FROM mesas
+WHERE estado = 'disponible' AND capacidad >= %s
+ORDER BY numero_mesa;
+
+-- Consulta adicional 9: Obtener detalles de pedido por estado
+SELECT * FROM detalles_pedido
+WHERE estado = %s
+ORDER BY detalle_id;
+
+-- Consulta adicional 10: Obtener reservas por fecha
+SELECT * FROM reservas
+WHERE fecha_reserva = %s
+ORDER BY hora_reserva;
+
+-- Consulta adicional 11: Obtener roles con usuarios asignados
+SELECT r.*, COUNT(u.usuario_id) as total_usuarios
+FROM roles r
+LEFT JOIN usuarios u ON r.rol_id = u.rol
+GROUP BY r.rol_id
+ORDER BY total_usuarios DESC;
+
+-- Consulta adicional 12: Obtener asistencia por estado
+SELECT * FROM asistencia
+WHERE estado = %s AND MONTH(fecha) = %s AND YEAR(fecha) = %s
+ORDER BY fecha;
+
+-- Consulta adicional 13: Obtener platillos veganos
+SELECT * FROM platillos
+WHERE es_vegano = TRUE AND activo = TRUE
+ORDER BY nombre;
+
+-- Consulta adicional 14: Obtener pedidos por mesero
+SELECT * FROM pedidos
+WHERE usuario_id = %s
+ORDER BY fecha_hora DESC;
+
+-- Consulta adicional 15: Obtener inventario por ingrediente y fecha
+SELECT * FROM inventario
+WHERE ingrediente_id = %s AND DATE(fecha) BETWEEN %s AND %s
+ORDER BY fecha;
+
+-- Consulta adicional 16: Obtener categorías sin platillos
+SELECT * FROM categorias
+WHERE categoria_id NOT IN (SELECT DISTINCT categoria_id FROM platillos WHERE activo = TRUE)
+ORDER BY nombre;
+
+-- Consulta adicional 17: Obtener ingredientes próximos a caducar
+SELECT * FROM ingredientes
+WHERE caduca = TRUE AND dias_caducidad <= %s
+ORDER BY dias_caducidad;
+
+-- Consulta adicional 18: Obtener clientes con pedidos recientes
+SELECT DISTINCT c.*
+FROM clientes c
+JOIN pedidos p ON c.cliente_id = p.cliente_id
+WHERE DATE(p.fecha_hora) >= DATE_SUB(CURDATE(), INTERVAL %s DAY)
+ORDER BY c.nombre;
+
+-- Consulta adicional 19: Obtener mesas ocupadas
+SELECT * FROM mesas
+WHERE estado = 'ocupada'
+ORDER BY numero_mesa;
+
+-- Consulta adicional 20: Obtener detalles de pedido por platillo
+SELECT dp.*, p.nombre as platillo_nombre, pe.fecha_hora
+FROM detalles_pedido dp
+JOIN platillos p ON dp.platillo_id = p.platillo_id
+JOIN pedidos pe ON dp.pedido_id = pe.pedido_id
+WHERE dp.platillo_id = %s
+ORDER BY pe.fecha_hora DESC;
