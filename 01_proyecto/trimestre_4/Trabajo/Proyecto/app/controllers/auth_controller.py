@@ -12,6 +12,7 @@ service = AuthService()
 @logout_required
 def login():
     """Handle user login."""
+
     login_form = LoginForm()
     if login_form.validate_on_submit():
         user = service.authenticate_user(login_form.email.data, login_form.password.data)
